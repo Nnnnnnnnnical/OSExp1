@@ -42,7 +42,7 @@ public class ProcessController{
     public String RR(){
         List<Process> p = new ArrayList<>();
         initTaskService.init_task(p);
-        this.rrService.CircleTime();
+        this.rrService.CircleTime(p);
         return null;
     }
 

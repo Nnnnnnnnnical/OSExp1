@@ -1,6 +1,8 @@
 package com.Entity;
 
 
+import java.util.Date;
+
 //进程的数据结构
 public class Process{
     private double arrivalTime;//到达时间

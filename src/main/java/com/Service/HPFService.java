@@ -18,7 +18,10 @@ public class HPFService {
     public void HRRN(List<Process> processes) {
 
         for (int i = 0; i < Common.task_num; i++) {
-            get_ratio(processes);//每次循环时计算一次响应比
+            if(processes.size() == 0){
+                break;
+            }
+                get_ratio(processes);//每次循环时计算一次响应比
             Process tem = get_a_task(processes);//从进程列表中得到一个最高响应比的任务
             System.out.print(Common.tm.format(new Date()) + "第" + (int) tem.getPid()+ "号进程开始运行==(R)==");
             try {
@@ -26,23 +29,20 @@ public class HPFService {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(Common.tm.format(new Date()) + "进程结束运行(F)=====用时为" + (int) tem.getServiceTime() + "S");
+            System.out.print(Common.tm.format(new Date()) + "进程结束运行(F)=====用时为" + (int) tem.getServiceTime() + "S-----");
+
+            //获取间隔时间
+            double nowTime = System.nanoTime();
+            double time = (nowTime-tem.getStartTime())/1000000000;
+
+            //求周转时间和带权周转时间
+            tem.setWholeTime(time);
+            System.out.print("周转时间为："+tem.getWholeTime()+"S  ");
+            tem.setWeightWholeTime(tem.getWholeTime()/tem.getArrivalTime());
+            System.out.println("带权周转时间为："+tem.getWholeTime()/tem.getArrivalTime()+"S");
+            i--;
 
         }
-
-        show_time();//显示每个进程的周转时间
-
-    }
-
-    public static void show_time()//显示每个进程的周转时间
-    {
-        double sum_time = 0;
-        for (int i = 0; i < Common.execute_time.size(); i++) {
-            double[] t = Common.execute_time.get(i);
-            System.out.println("task:" + t[0] + ":周转时间=" + (int) (t[1] / 1000) + "S");
-            sum_time += t[1];
-        }
-        System.out.println("使用最高响应比的策略，平均周转时间为：" + (int) (sum_time / Common.execute_time.size() / 1000) + "S");
 
     }
 
@@ -58,7 +58,7 @@ public class HPFService {
                 temp = i;
             }
         }
-        System.out.print("进程号为："+processes.get(temp).getPid()+"的响应比最高，为："+processes.get(temp).getRadio()+"------");
+        System.out.print("进程号为："+process.getPid()+"的响应比最高，为："+process.getRadio()+"------");
         processes.remove(processes.get(temp));
         return process;
 
@@ -70,7 +70,7 @@ public class HPFService {
         double[] radio = new double[processes.size()];
         for(int i =0;i<processes.size();i++){
             //响应比=（等待时间+服务时间）/服务时间
-            radio[i] = ((System.currentTimeMillis()-processes.get(i).getStartTime())+processes.get(i).getServiceTime())/processes.get(i).getServiceTime();
+            radio[i] = ((System.nanoTime()-processes.get(i).getStartTime())+processes.get(i).getServiceTime())/processes.get(i).getServiceTime();
             processes.get(i).setRadio(radio[i]);
         }
     }
