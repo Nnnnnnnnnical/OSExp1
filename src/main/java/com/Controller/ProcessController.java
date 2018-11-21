@@ -57,7 +57,7 @@ public class ProcessController{
     @RequestMapping(value = "/process/SJF",method = RequestMethod.GET)
     public String SJF(){
         List<Process> p = new ArrayList<>();
-        this.sjfService.init_task(p);
+        initTaskService.init_task(p);
         this.sjfService.SJF(p);
         return null;
     }
