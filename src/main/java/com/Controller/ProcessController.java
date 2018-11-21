@@ -32,19 +32,18 @@ public class ProcessController{
 
     @RequestMapping(value = "/process/HPF",method = RequestMethod.GET)
     public String HPF(){
-
-        initTaskService.init_task();
-        this.hpfService.init_task(Common.task_info,Common.task_num);
-        this.hpfService.HRRN();
+        List<Process> p = new ArrayList<>();
+        initTaskService.init_task(p);
+        this.hpfService.HRRN(p);
         return null;
     }
 
     @RequestMapping(value = "/process/RR",method = RequestMethod.GET)
     public String RR(){
-       initTaskService.init_task();
-       this.rrService.init_task(Common.task_info,Common.task_num);
-       this.rrService.CircleTime();
-       return null;
+        List<Process> p = new ArrayList<>();
+        initTaskService.init_task(p);
+        this.rrService.CircleTime();
+        return null;
     }
 
     @RequestMapping(value = "/process/FCFS",method = RequestMethod.GET)

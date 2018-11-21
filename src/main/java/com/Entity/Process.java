@@ -3,14 +3,15 @@ package com.Entity;
 
 //进程的数据结构
 public class Process{
-    public double arrivalTime;
-    public double serviceTime;
-    public double finishTime;
-    public double startTime;
-    public double WholeTime;
-    public double weightWholeTime;
-    public int pid;
-    public String status;
+    private double arrivalTime;//到达时间
+    private double serviceTime;//服务时间
+    private double finishTime;//结束时间
+    private double startTime;//开始时间
+    private double WholeTime;//周转时间
+    private double weightWholeTime;//带权周转时间
+    private int pid;//进程号
+    private String status;//状态
+    private double radio;//响应比
 
     public Process() {
     }
@@ -77,5 +78,13 @@ public class Process{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public double getRadio() {
+        return radio;
+    }
+
+    public void setRadio(double radio) {
+        this.radio = radio;
     }
 }

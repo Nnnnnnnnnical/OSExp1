@@ -7,14 +7,11 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-
+/**
+ * 先来先执行算法
+ */
 @Service
 public class FCFSService {
-    private static SimpleDateFormat tm = new SimpleDateFormat("HH:mm:ss");
-    public static int task_num = 8;//进程数
-    String[] arr = new String[]{"1","2","3","4","5","6","7","0"};
-
-    public static List<List<Process>> task_info = new ArrayList<>();//进程信息列表
 
     public void init_task(List<Process> processes)//初始化进程列表
     {
@@ -25,7 +22,7 @@ public class FCFSService {
         }
 
         //打乱1到8顺序
-        List list = Arrays.asList(arr);
+        List list = Arrays.asList(Common.arr);
         Collections.shuffle(list);
         System.out.println(list);
         int i = 0;
@@ -45,14 +42,14 @@ public class FCFSService {
         Process[] process = new Process[Common.task_num];
         p.toArray(process);
 
-        for(int i = 0 ;i<task_num;i++){
-            System.out.print(tm.format(new Date()) + "第" +  (int)p.get(i).getPid() + "号进程开始运行==(R)==");
+        for(int i = 0 ;i<Common.task_num;i++){
+            System.out.print(Common.tm.format(new Date()) + "第" +  (int)p.get(i).getPid() + "号进程开始运行==(R)==");
             try {
                 Thread.sleep((long) p.get(i).getServiceTime() * 1000);//模拟进程执行所需要的时间
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(tm.format(new Date()) + "进程结束运行(F)=====用时为" + (int) p.get(i).getServiceTime() + "S");
+            System.out.println(Common.tm.format(new Date()) + "进程结束运行(F)=====用时为" + (int) p.get(i).getServiceTime() + "S");
 
         }
         show_time(p);
