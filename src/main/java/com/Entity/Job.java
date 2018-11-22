@@ -1,10 +1,7 @@
 package com.Entity;
 
-
-import java.util.Date;
-
 //进程的数据结构
-public class Process{
+public class Job{
     private double arrivalTime;//到达时间
     private double serviceTime;//服务时间
     private double finishTime;//结束时间
@@ -15,7 +12,7 @@ public class Process{
     private String status;//状态
     private double radio;//响应比
 
-    public Process() {
+    public Job() {
     }
 
     public double getArrivalTime() {
