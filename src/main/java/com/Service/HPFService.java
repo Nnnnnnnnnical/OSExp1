@@ -24,8 +24,8 @@ public class HPFService {
             if(Jobs.size() == 0){
                 break;
             }
-            get_ratio(Jobs,jobResponses);//每次循环时计算一次响应比
-            Job tem = get_a_task(Jobs,jobResponses);//从进程列表中得到一个最高响应比的任务
+            getRadio(Jobs,jobResponses);//每次循环时计算一次响应比
+            Job tem = getTask(Jobs,jobResponses);//从进程列表中得到一个最高响应比的任务
             System.out.print(Common.tm.format(new Date()) + "第" + (int) tem.getPid()+ "号进程开始运行==(R)==");
 //            try {
 //                Thread.sleep((long) tem.getServiceTime() * 1000);//模拟进程执行所需要的时间
@@ -52,7 +52,7 @@ public class HPFService {
 
     }
 
-    public static Job get_a_task(List<Job> Jobs,JobResponse jobResponse)//根据响应比，返回一个最高相应比进程
+    public static Job getTask(List<Job> Jobs,JobResponse jobResponse)//根据响应比，返回一个最高相应比进程
     {
         Job Job = new Job();
         int temp = 0;
@@ -70,7 +70,7 @@ public class HPFService {
 
     }
 
-    public static void get_ratio(List<Job> Jobs,JobResponse jobResponses)//计算每一个进程当前的响应比
+    public static void getRadio(List<Job> Jobs,JobResponse jobResponses)//计算每一个进程当前的响应比
     {
 
         double[] radio = new double[Jobs.size()];

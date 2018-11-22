@@ -18,10 +18,10 @@ public class FCFSService {
     @Autowired
     private InitTaskService initTaskService;
 
-    public void init_task(List<Job> Jobs,JobResponse jobResponses)//初始化进程列表
+    public void initTask(List<Job> Jobs,JobResponse jobResponses)//初始化进程列表
     {
 
-        initTaskService.init_task(Jobs,jobResponses);
+        initTaskService.initTask(Jobs,jobResponses);
         //打乱1到8顺序
         List list = Arrays.asList(Common.arr);
         Collections.shuffle(list);

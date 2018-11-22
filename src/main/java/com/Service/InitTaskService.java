@@ -15,7 +15,7 @@ import java.util.Random;
 @Service
 public class InitTaskService {
 
-    public void init_task(List<Job> Jobs, JobResponse jobResponses)//初始化进程列表
+    public void initTask(List<Job> Jobs, JobResponse jobResponses)//初始化进程列表
     {
 
         List<Job> temp = new ArrayList<>();

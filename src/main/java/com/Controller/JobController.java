@@ -39,7 +39,7 @@ public class JobController{
     public JobResponse HPF(){
         List<Job> p = new ArrayList<>();
         JobResponse jobResponses = new JobResponse();
-        initTaskService.init_task(p,jobResponses);
+        initTaskService.initTask(p,jobResponses);
         return this.hpfService.HRRN(p,jobResponses);
     }
 
@@ -51,7 +51,7 @@ public class JobController{
     public JobResponse RR(){
         List<Job> p = new ArrayList<>();
         JobResponse jobResponses = new JobResponse();
-        initTaskService.init_task(p,jobResponses);
+        initTaskService.initTask(p,jobResponses);
         return this.rrService.CircleTime(p,jobResponses);
     }
 
@@ -63,7 +63,7 @@ public class JobController{
     public JobResponse FCFS(){
         List<Job> p = new ArrayList<>();
         JobResponse jobResponses = new JobResponse();
-        this.fcfsService.init_task(p,jobResponses);
+        this.fcfsService.initTask(p,jobResponses);
         return this.fcfsService.FCFS(p,jobResponses);
     }
 
@@ -75,7 +75,7 @@ public class JobController{
     public JobResponse SJF(){
         List<Job> p = new ArrayList<>();
         JobResponse jobResponses = new JobResponse();
-        initTaskService.init_task(p,jobResponses);
+        initTaskService.initTask(p,jobResponses);
         return this.sjfService.SJF(p,jobResponses);
     }
 }
