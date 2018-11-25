@@ -13,7 +13,7 @@ import java.util.*;
  * 先来先执行算法
  */
 @Service
-public class FCFSService {
+public class FCFSService implements MethodService{
 
     @Autowired
     private InitTaskService initTaskService;
@@ -21,15 +21,15 @@ public class FCFSService {
     public void initTask(List<Job> Jobs,JobResponse jobResponses)//初始化进程列表
     {
 
-        initTaskService.initTask(Jobs,jobResponses);
+        initTaskService.initTask(Jobs, jobResponses);
         //打乱1到8顺序
         List list = Arrays.asList(Common.arr);
         Collections.shuffle(list);
-        System.out.println("进程号先后的顺序"+list);
+        System.out.println("进程号先后的顺序" + list);
         jobResponses.setList(list);
         int i = 0;
-        for(Job p : Jobs){
-            if(i<Common.task_num){
+        for (Job p : Jobs) {
+            if (i < Common.task_num) {
                 p.setPid(Integer.parseInt((String) list.get(i)));
                 jobResponses.getJob().get(i).setPid(p.getPid());
                 i++;
@@ -37,9 +37,8 @@ public class FCFSService {
         }
     }
 
-    //先来先服务算法
-    public JobResponse FCFS(List<Job> Jobs,JobResponse jobResponses){
-
+    @Override
+    public JobResponse method(List<Job> Jobs, JobResponse jobResponses) {
         Job[] Job = new Job[Common.task_num];
         Jobs.toArray(Job);
 
@@ -65,5 +64,4 @@ public class FCFSService {
         }
         return jobResponses;
     }
-
 }

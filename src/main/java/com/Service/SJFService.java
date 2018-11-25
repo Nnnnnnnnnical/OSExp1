@@ -8,12 +8,14 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 短作业优先算法
+ */
 @Service
-public class SJFService {
+public class SJFService implements MethodService{
 
-    //短作业优先算法
-    public JobResponse SJF(List<Job> Jobs, JobResponse jobResponses){
-
+    @Override
+    public JobResponse method(List<Job> Jobs, JobResponse jobResponses) {
         //按照服务时间长短升序排序所有进程
         Collections.sort(Jobs, (o1, o2) -> {
             int flag = Common.compareJob(o1, o2);

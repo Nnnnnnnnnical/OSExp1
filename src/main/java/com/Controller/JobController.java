@@ -40,16 +40,16 @@ public class JobController{
         initTaskService.initTask(p,jobResponses);
         if(method.equals("HRRN")){
             //最高优先权算法
-            return this.hpfService.HRRN(p,jobResponses);
+            return this.hpfService.method(p,jobResponses);
         }else if(method.equals("RR")){
             //时间片轮转调度算法
-            return this.rrService.CircleTime(p,jobResponses);
+            return this.rrService.method(p,jobResponses);
         }else if(method.equals("FCFS")){
             //先来先服务算法
-            return this.fcfsService.FCFS(p,jobResponses);
+            return this.fcfsService.method(p,jobResponses);
         }else if(method.equals("SJF")){
             //短作业优先算法
-            return this.sjfService.SJF(p,jobResponses);
+            return this.sjfService.method(p,jobResponses);
         }else{
             return null;
         }
