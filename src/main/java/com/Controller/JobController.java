@@ -33,7 +33,7 @@ public class JobController{
      * 最高优先权算法
      * @return
      */
-    @RequestMapping(value = "/Job/{method}",method = RequestMethod.POST)
+    @RequestMapping(value = "job/{method}",method = RequestMethod.POST)
     public JobResponse Job(@PathVariable("method") String method){
         List<Job> p = new ArrayList<>();
         JobResponse jobResponses = new JobResponse();
