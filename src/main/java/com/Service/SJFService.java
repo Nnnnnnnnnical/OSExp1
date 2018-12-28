@@ -30,7 +30,7 @@ public class SJFService implements MethodService{
 //                e.printStackTrace();
 //            }
             System.out.print(Common.tm.format(new Date()) + "进程结束运行(F)=====用时为" + (int) Jobs.get(i).getServiceTime() + "s-----");
-
+            jobResponses.setJob(Jobs);
 
             //获取间隔时间
             double nowTime = System.nanoTime();
